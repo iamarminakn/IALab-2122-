@@ -3,11 +3,6 @@ teams(milan,inter,napoli,juventus,roma,
 lazio,fiorentina,atalanta,verona,torino,sassuolo,udinese,
 bologna,empoli,sampdoria,spezia,cagliari,salernitana,genoa,venezia).
 
-%il campionato prevede 38 giornate, 19 di andata e 19 di ritorno NON
-%simmetriche, ossia la giornata 1 di ritorno non coincide necessariamente con la
-%giornata 1 di andata a campi invertiti; 
-firstleg(1..19).
-secondleg(1..19).
 
 %ogni squadra fa riferimento ad una città, che offre la struttura in cui la squadra
 %gioca gli incontri in casa;
@@ -31,5 +26,13 @@ in(cagliari,cagliari).
 in(salernitana,salerno).
 in(genoa,genova).
 in(venezia,venezia).
+%il campionato prevede 38 giornate, 19 di andata e 19 di ritorno NON
+%simmetriche, ossia la giornata 1 di ritorno non coincide necessariamente con la
+%giornata 1 di andata a campi invertiti; 
+firstleg(1..19).
+secondleg(1..19).
 
+%all giornata have 10 games 
+10{game(Hometeam,Guestteam,FL):teams(Hometeam),teams(Guestteam), Hometeam<>Guestteam}10:-firstleg(FL).
+10{game(Hometeam,Guestteam,SL):teams(Hometeam),teams(Guestteam), Hometeam<>Guestteam}10:-secondleg(SL).
 
