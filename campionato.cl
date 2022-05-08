@@ -1,7 +1,7 @@
 %sono iscritte 20 squadre
-teams(milan,inter,napoli,juventus,roma,
-lazio,fiorentina,atalanta,verona,torino,sassuolo,udinese,
-bologna,empoli,sampdoria,spezia,cagliari,salernitana,genoa,venezia).
+teams(milan;inter;napoli;juventus;roma;
+lazio;fiorentina;atalanta;verona;torino;sassuolo;udinese;
+bologna;empoli;sampdoria;spezia;cagliari;salernitana;genoa;venezia).
 
 
 %ogni squadra fa riferimento ad una città, che offre la struttura in cui la squadra
@@ -30,9 +30,12 @@ in(venezia,venezia).
 %simmetriche, ossia la giornata 1 di ritorno non coincide necessariamente con la
 %giornata 1 di andata a campi invertiti; 
 firstleg(1..19).
-secondleg(1..19).
+secondleg(20..38).
 
 %all giornata have 10 games 
 10{game(Hometeam,Guestteam,FL):teams(Hometeam),teams(Guestteam), Hometeam<>Guestteam}10:-firstleg(FL).
 10{game(Hometeam,Guestteam,SL):teams(Hometeam),teams(Guestteam), Hometeam<>Guestteam}10:-secondleg(SL).
 
+
+
+#show game/3.
