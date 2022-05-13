@@ -22,17 +22,36 @@ team(salernitana,salerno).
 team(genoa,genova).
 team(venezia,venezia).
 %il campionato prevede 38 giornate, 19 di andata e 19 di ritorno NON %simmetriche, ossia la giornata 1 di ritorno non coincide necessariamente con la %giornata 1 di andata a campi invertiti; 
-gironeAndata(1..19).
-gironeRitorna(20..38).
 
-%all giornata have 10 games 
-1{game(S1,S2,G):team(S1,_),team(S2,_), S1<>S2}1:-gironeAndata(G).
-1{game(S1,S2,G):team(S1,_),team(S2,_), S1<>S2}1:-gironeRitorna(G).
+giornata(1..38).
+
+
+1 {assegna(S,G):giornata(G)} 1:-team(S).
+%1 {assegna(S,G):gironeRitorna(G)} 1:-team(S).
+
+
+10{game(S1,S2,G):team(S1,_),team(S2,_), S1<>S2}10:-giornata(G).
+
+
+
+%non è possibile che la stessa partita si disputi in giornata diverse
+:- game(S1,S2,G), game(S1,S2,G2), G != G2.
 
 
 
 %due squadre della stessa città condividono la stessa struttura di gioco, quindi,non possono giocare entrambe in casa nella stessa giornata;
-:- game(S1,G), game(S2,G), S1 != S2, teams(S1,C), teams(S2,C).
+:- game(S1,G), game(S2,G), S1 != S2, team(S1,C), team(S2,C).
+
+
+% una squadra non può giocare più di due partite consecutive in casa
+:- game(S,_,G), game(S,_,G+1), game(S,_,G+2).
+
+
+% una squadra non può giocare più di due partite consecutive in trasferta
+:- game(_,S,G), game(_,S,G+1), game(_,C,G+2).
+
+%non è possibile che una squadra affronti due volte un'altra squadra nelle prime 3 giornate
+:- game(S1,S2,G), game(S2,S1,G1), G <= 19, G1 <= 19.
 
 
 #show game/3.
