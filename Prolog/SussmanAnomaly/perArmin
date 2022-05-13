@@ -1,0 +1,5 @@
+ciao Armin, faccio questo per farti capire un po la mia parte di progetto.
+come prima cosa puoi caricare tutto il progetto inserendo nel terminale il file 'loader.pl'.
+io in Visual Studio apro tutto con il comando 'swipl -s loader.pl', esso carica il dominio,le azioni e la ricerca.
+all'interno dei file ci sono dei commenti per farti capire i comandi e come si eseguono.
+Purtroppo ancora non riesco bene a capire la ricerca, appena riesco effettuo il Pull.
