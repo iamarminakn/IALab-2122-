@@ -26,10 +26,11 @@ team(venezia,venezia).
 giornata(1..38).
 
 
-1 {assegna(S,G):giornata(G)} 1:-team(S).
-%1 {assegna(S,G):gironeRitorna(G)} 1:-team(S).
+
+1 {assegna(S,G):giornata(G)} 1:-team(S,_).
 
 
+%ogni giornata deve avere 10 in cui 20 squadre affrontano insieme  
 10{game(S1,S2,G):team(S1,_),team(S2,_), S1<>S2}10:-giornata(G).
 
 
@@ -40,7 +41,7 @@ giornata(1..38).
 
 
 %due squadre della stessa città condividono la stessa struttura di gioco, quindi,non possono giocare entrambe in casa nella stessa giornata;
-:- game(S1,G), game(S2,G), S1 != S2, team(S1,C), team(S2,C).
+:- game(S1,C,G), game(S2,C,G), S1 != S2, team(S1,C), team(S2,C).
 
 
 % una squadra non può giocare più di due partite consecutive in casa
