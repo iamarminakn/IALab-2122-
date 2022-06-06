@@ -52,7 +52,7 @@ giornata(1..38).
 :- game(S1,S2,G), game(S2,S1,G1), G <= 19, G1 <= 19.
 
 % non è possibile che una squadra giochi più di una partita alla stessa Giornata
-:- team(S,_), giornata(G), N = #count{ST : game(S,ST,G)}, M = #count{SC : game(SC,S,G)}, N+M != 1.
+:- team(S,_), giornata(G), #count{FirstGame : game(S,FirstGame,G)}=FG, #count{SecondGame : game(SecondGame,S,G)}=SG, FG+SG != 1.
 
 
 #show game/3.
